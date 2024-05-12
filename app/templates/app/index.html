@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="colorlib-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                    <h2>All Shoes</h2>
+                </div>
+            </div>
+            <div class="row row-pb-md">
+                {% for shoe in shoes %}
+                <div class="col-lg-3 mb-4 text-center">
+                    <div class="product-entry border">
+                        <a href="{% url 'detail' shoe.slug %}" class="prod-img">
+                            {% if shoe.image %}
+                            <img src="{{ shoe.image.url }}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                            {% else %}
+                            <img src="https://ami.by/thumbs/getthumb.php?w%5Cu003d200%5Cu0026h%5Cu003d267%5Cu0026src%5Cu003dimages/catalogue/items/sofa_prestizh_02.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                            {% endif %}
+                        </a>
+                        <div class="desc">
+                            <h2><a href="{% url 'detail' shoe.slug %}">{{ shoe.name }}</a></h2>
+                            <span class="price">Category: {{ shoe.category }}</span>
+                            <span class="price">Price: ${{ shoe.price }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p><a href="#" class="btn btn-primary btn-lg">Shop All Products</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
